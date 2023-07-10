@@ -18,12 +18,8 @@ def get_disease_query(disease_id):
                     name
                     id
                 }
-                }
-            }
             }
         }
-        }
-    }
     }
     """.replace("disease_id",disease_id)
     return query_string
