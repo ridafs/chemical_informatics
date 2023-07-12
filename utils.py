@@ -1,25 +1,26 @@
 import requests
 import json
-def get_disease_query(disease_id):
+
+def get_disease_query(disease_id, num_targets=100):
     # Build query string to get target information as well as count
     query_string = """
-query AssociatedTargets {
-  disease(efoId: "MONDO_0001657") {
+query AssociatedTargets {{
+  disease(efoId: "{disease_id}") {{
     id
     name
-    associatedTargets(page: { size: 3, index: 0 }) {
-      rows {
-        target {
+    associatedTargets(page: {{ size: {num_targets}, index: 0 }}) {{
+      rows {{
+        target {{
           id
           approvedName
           approvedSymbol
-        }
+        }}
         score
-      }
-    }
-  }
-}
-    """.replace("disease_id",disease_id)
+      }}
+    }}
+  }}
+}}
+    """.format(disease_id=disease_id,num_targets=num_targets)
     return query_string
 
 def parse_target_json(api_response):
