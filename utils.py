@@ -30,7 +30,7 @@ def parse_target_json(api_response):
     #pull IDs from dictionary and add to new list
     return [ t_id['target'].get('id') for t_id in target_ids ]
 
-def get_targets(disease_id):
+def get_targets(disease_id,num_targets):
     query_string = get_disease_query(disease_id)
     # Set variables object of arguments to be passed to endpoint
     variables = {"efoId": disease_id}
